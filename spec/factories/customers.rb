@@ -1,0 +1,8 @@
+FactoryBot.define do
+  factory :customer do
+    invoice_item { "MyString" }
+    invoice { "MyString" }
+    item { "MyString" }
+    transaction { "MyString" }
+  end
+end
