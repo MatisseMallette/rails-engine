@@ -12,4 +12,10 @@ class ErrorSerializer
       "errors": errors.full_messages
     }
   end
+
+  def self.no_data
+    {
+      data: {}
+    }
+  end
 end
