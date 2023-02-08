@@ -12,8 +12,9 @@ RSpec.describe 'Api::V1::MerchantsController', type: :request do
       merchants = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(merchants.count).to eq(3)
-
+      
       merchants.each do |m|
+        
         expect(m).to have_key(:id)
         expect(m[:attributes]).to have_key(:name)
       end
@@ -30,11 +31,9 @@ RSpec.describe 'Api::V1::MerchantsController', type: :request do
 
       expect(response).to be_successful
 
-      merchant_response = JSON.parse(response.body, symbolize_names: true)
+      merchant_response = JSON.parse(response.body, symbolize_names: true)[:data]
 
-      expect(merchant_response.count).to eq(1)
-
-      merchant_name = merchant_response[:data][:attributes][:name]
+      merchant_name = merchant_response[:attributes][:name]
 
       expect(merchant_name).to eq(Merchant.where(name: merchant_name).first.name)
     end
