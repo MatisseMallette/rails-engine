@@ -1,8 +1,16 @@
 class Api::V1::Merchants::SearchController < ApplicationController
 
   def index
-    set_merchants_by_name
-    render json: MerchantSerializer.new(@merchants)
+    if params[:name] && !params[:name].empty?
+      set_merchants_by_name
+      if @merchants.nil?
+        render json: ErrorSerializer.no_data
+      else
+        render json: MerchantSerializer.new(@merchant)
+      end
+    else
+      render json: ErrorSerializer.bad_data, status: :bad_request
+    end
   end
 
   def show
