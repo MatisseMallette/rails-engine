@@ -6,7 +6,7 @@ class Api::V1::Merchants::SearchController < ApplicationController
       if @merchants.nil?
         render json: ErrorSerializer.no_data
       else
-        render json: MerchantSerializer.new(@merchant)
+        render json: MerchantSerializer.new(@merchants)
       end
     else
       render json: ErrorSerializer.bad_data, status: :bad_request
