@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Merchant do 
+RSpec.describe Merchant do
   describe 'Relationships' do
     it { should have_many :items }
     it { should have_many(:invoice_items).through(:items) }
@@ -14,24 +16,24 @@ RSpec.describe Merchant do
   end
 
   describe 'Class Methods' do
-    describe '#find_by_name' do 
+    describe '#find_by_name' do
       it 'returns a merchant based on name' do
         create_list(:merchant, 3)
         merchant = Merchant.first
-  
+
         expect(Merchant.find_by_name(merchant.name)).to eq(merchant)
       end
-  
-      it 'returns a merchant based on partial name regardless of case' do 
+
+      it 'returns a merchant based on partial name regardless of case' do
         create(:merchant, name: 'Jeff')
         create(:merchant, name: 'Bob')
-  
+
         expect(Merchant.find_by_name('je')).to eq(Merchant.first)
       end
     end
 
-    describe '#find_all_by_name' do 
-      it 'returns all merchants based on name' do 
+    describe '#find_all_by_name' do
+      it 'returns all merchants based on name' do
         create_list(:merchant, 9, name: 'Todd')
         create(:merchant, name: 'Jeff')
 

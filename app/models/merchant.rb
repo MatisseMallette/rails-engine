@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Merchant < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :invoice_items, through: :items
@@ -13,7 +15,7 @@ class Merchant < ApplicationRecord
 
   def self.find_all_by_name(name)
     Merchant.where('name ILIKE ?', "%#{name}%")
-        # .or(Item.where('description ILIKE ?', "%#{name}%"))
-        .order(Arel.sql('lower(name) DESC'))
+            # .or(Item.where('description ILIKE ?', "%#{name}%"))
+            .order(Arel.sql('lower(name) DESC'))
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::MerchantsController', type: :request do
@@ -13,7 +15,7 @@ RSpec.describe 'Api::V1::MerchantsController', type: :request do
       expect(response).to be_successful
 
       m1_items = JSON.parse(response.body, symbolize_names: true)[:data]
-      
+
       expect(m1_items.count).to eq(3)
 
       get "/api/v1/merchants/#{m2.id}/items"
